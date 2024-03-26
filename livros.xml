@@ -1,0 +1,20 @@
+<livros>
+	<livro>
+		<autor>J. K. Rowling</autor>
+		<titulo>Harry Potter e a Pedra filosofal</titulo>
+		<anoPublicacao>1997</anoPublicacao>
+		<editora>Bloomsbury Publishing</editora>
+	</livro>
+	<livro>
+		<autor>J. R. R. Tolkien</autor>
+		<titulo>Senhor dos Anéis</titulo>
+		<anoPublicacao>1954</anoPublicacao>
+		<editora>George Allen and Unwin</editora>
+	</livro>
+	<livro>
+		<autor>Frank Herbert</autor>
+		<titulo>Duna</titulo>
+		<anoPublicacao>1965</anoPublicacao>
+		<editora>Chilton Books</editora>
+	</livro>
+</livros>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>AV-PW</title>
+
+	<style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border-bottom: 1px solid #b1b1b1;
+            text-align: left;
+            padding: 12px;
+        }
+	</style>
+</head>
+
+<body>
+	
+	<h1 style="display: flex; justify-content: center; align-items: center; font-family: Arial, Helvetica, sans-serif;">Livros Existentes</h1>
+
+	<div style="display: flex; flex-direction: column; align-items: center; text-align: center;"><!--here-->
+			<!--"display: flex; justify-content: center; align-items: center;"-->
+
+			<button id="btn" style="margin-top: 10px">Enviar</button>
+			<div id="aux"></div>
+	</div>
+
+	<script>
+		document.getElementById("btn").addEventListener("click", function () {
+        	loadDoc("livros.xml");
+    	});//here
+
+		function loadDoc(filename) {
+			var xhttp;
+        	if (window.XMLHttpRequest) {
+            	xhttp = new XMLHttpRequest();
+        	} else {
+            	xhttp = new ActiveXObject("Microsoft.XMLHTTP");
+       		}
+        	xhttp.onreadystatechange = function () {
+            	if (this.readyState == 4 && this.status == 200) {
+                	execute(this);
+            	}
+       		};
+        	xhttp.open("GET", filename, true);
+        	xhttp.send();
+
+			/*event.preventDefault();
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.onload = function () {execute(this)}
+			xhttp.open("GET", "livros.xml");
+			xhttp.send(); --ANTIGO--*/
+
+		}
+
+		function execute(xml) {
+			const xmlDoc = xml.responseXML;
+			const livros = xmlDoc.getElementsByTagName("livro");
+			let table = "<table><tr><th>Autor</th><th>Título</th><th>Ano de Publicação</th><th>Editora</th></tr>";//here
+			for (let i = 0; i < livros.length; i++) {
+				table += "<tr><td>" +
+					livros[i].getElementsByTagName("autor")[0].childNodes[0].nodeValue +
+					"</td><td>" +
+					livros[i].getElementsByTagName("titulo")[0].childNodes[0].nodeValue +
+					"</td><td>" +
+					livros[i].getElementsByTagName("anoPublicacao")[0].childNodes[0].nodeValue +
+					"</td><td>" +
+					livros[i].getElementsByTagName("editora")[0].childNodes[0].nodeValue +
+					"</td></tr>";
+					table += "<tr><td colspan='4'><hr></td></tr>";
+			}
+			table += "</table>";
+			document.getElementById("aux").innerHTML = table;
+		}
+	</script>
+
+</body>
+
+</html>
